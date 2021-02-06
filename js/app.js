@@ -35,7 +35,6 @@ const testObject = {
 const cardNumber = []
 
 
-
 const randomNumber = () => {
   return Math.floor(Math.random() * 10) + 1
 }
@@ -61,51 +60,53 @@ console.log(cardNumber)
 
 
 const makePlates = () => {
-  // something to clear element everytime called
-  $('.column-right').empty()
-  for (let i = 0; i < 4; i++) {
-    const $div = $('<div>').attr('class', 'plate')
-    const randomDrumsticks = randomNumber()
-    $div.text(randomDrumsticks) /////////// <<<---- STORE THIS A DIFF WAY? OR get rid of it?
-    $div.data('number', randomDrumsticks)///<-----so far...USELESS
-      for (let i = 0; i < randomDrumsticks; i++){
-        const $drumDiv = $('<div>').attr('class', 'drumstick')
-        $div.append($drumDiv)
+
+    $('.column-right').empty()
+    for (let i = 0; i < 4; i++) {
+      const $div = $('<div>').attr('class', 'plate')
+      const randomDrumsticks = randomNumber()
+      $div.text(randomDrumsticks) /////////// <<<---- STORE THIS A DIFF WAY? OR get rid of it?
+      $div.data('number', randomDrumsticks)///<-----so far...USELESS
+        for (let i = 0; i < randomDrumsticks; i++){
+          const $drumDiv = $('<div>').attr('class', 'drumstick')
+          $div.append($drumDiv)
+        }
+
+    $('.column-right').append($div)
+    //return randomDrumsticks // <---randomDrumsticks is a number (there's a of them)
+    const numOfDrums = $div.data().number
+    console.log(numOfDrums)
+    }
+
+
+  $('.plate').on('click', (e)=>{
+      const currentPlateStr = e.currentTarget.innerText
+
+      console.log('-----------------')
+      console.log(`String is: ${currentPlateStr}`)
+
+      const currentPlateNum = parseInt(currentPlateStr)
+
+      console.log('Number is:')
+      console.log(currentPlateNum)
+
+      checkMatch(currentPlateNum)
+      if (testObject.score >= 20 && testObject.chances > 0) {
+        alert ('YOU WIN')
+        resetGame()
+        return
+      }
+      if (testObject.chances <= 0) {
+        alert ('BETTER LUCK NEXT TIME')
+        resetGame()
+        return
       }
 
-  $('.column-right').append($div)
-  //return randomDrumsticks // <---randomDrumsticks is a number (there's a of them)
-  const numOfDrums = $div.data().number
-  console.log(numOfDrums)
-  }
+      showRandomCard()
+      makePlates()
+    })
 
 
-$('.plate').on('click', (e)=>{
-    const currentPlateStr = e.currentTarget.innerText
-
-    console.log('-----------------')
-    console.log(`String is: ${currentPlateStr}`)
-
-    const currentPlateNum = parseInt(currentPlateStr)
-
-    console.log('Number is:')
-    console.log(currentPlateNum)
-
-    checkMatch(currentPlateNum)
-    if (testObject.score >= 20 && testObject.chances > 0) {
-      alert ('YOU WIN')
-      resetGame()
-      return
-    }
-    if (testObject.chances <= 0) {
-      alert ('BETTER LUCK NEXT TIME')
-      resetGame()
-      return
-    }
-
-    showRandomCard()
-    makePlates()
-  })
 }
 
 // function reset GAME
@@ -146,9 +147,9 @@ const checkMatch = (num) => {//pass in value from .plate div
 
 const playGame = () => {
   //set up first round
-  makePlates()
-  showRandomCard()
 
+  showRandomCard()
+  makePlates()
 
 }
 
@@ -170,6 +171,7 @@ $('#reset').on('click', ()=> resetGame())
 
 
 $('#makeplates').on('click', ()=> makePlates())
+
 
 
 })

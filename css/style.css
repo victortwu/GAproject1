@@ -18,9 +18,16 @@ div {
 }
 
 .column-left, .column-right {
+
   height: 90%;
   width: 45%;
 
+}
+
+.trex {
+  background-color: lightgreen;
+  height: 75px;
+  width: 75px;
 }
 
 .plate {
