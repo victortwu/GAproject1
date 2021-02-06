@@ -81,7 +81,7 @@ const makePlates = () => {
 
 
 $('.plate').on('click', (e)=>{
-    const currentPlateStr = e.currentTarget.innerText 
+    const currentPlateStr = e.currentTarget.innerText
 
     console.log('-----------------')
     console.log(`String is: ${currentPlateStr}`)
@@ -92,9 +92,15 @@ $('.plate').on('click', (e)=>{
     console.log(currentPlateNum)
 
     checkMatch(currentPlateNum)
-    if (testObject.score >= 20) {
+    if (testObject.score >= 20 && testObject.chances > 0) {
       alert ('YOU WIN')
       resetGame()
+      return
+    }
+    if (testObject.chances <= 0) {
+      alert ('BETTER LUCK NEXT TIME')
+      resetGame()
+      return
     }
 
     showRandomCard()
