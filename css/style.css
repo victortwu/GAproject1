@@ -18,7 +18,8 @@ div {
 }
 
 .column-left, .column-right {
-
+  display: flex;
+  flex-direction: column;
   height: 90%;
   width: 45%;
 
@@ -26,6 +27,12 @@ div {
 
 .trex {
   background-color: lightgreen;
+  height: 75px;
+  width: 75px;
+}
+
+.scorebox {
+  background-color: lavender;
   height: 75px;
   width: 75px;
 }

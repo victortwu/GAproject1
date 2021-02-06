@@ -43,6 +43,8 @@ const makePlates = () => {
             $div.append($drumDiv)    // $div.append('img id='image' src='theimage.png')
           }
 
+
+
     $('.column-right').append($div)
     const numOfDrums = $div.data().number
     console.log(numOfDrums)
@@ -75,6 +77,7 @@ const makePlates = () => {
 const resetGame = () => {
   $('.column-left').empty()
   $('.column-right').empty()
+  $('.scorebox').empty()
   testObject.score = 0
   testObject.chances = 5
   console.log(testObject)
@@ -86,13 +89,17 @@ const resetGame = () => {
 const checkMatch = (num) => {//pass in value from .plate div
 
     if (num === cardNumber[0]) {
+
       alert(`it's a match!`) //<---- perhaps a modal
       testObject.score = testObject.score + num
+      $('.scorebox').text(`Score: ${testObject.score}\n` + `Chances Left: ${testObject.chances}`)
+
     }else{
       alert('nope') // <---- modal
       testObject.chances = testObject.chances - 1
+      $('.scorebox').text(`Score: ${testObject.score}\n` + `Chances Left: ${testObject.chances}`)
     }
-    console.log(testObject)
+    
 }
 
 
