@@ -31,13 +31,16 @@ const testObject = {
 
 // function random card
 
+
 const cardNumber = []
-// probably don't need either of these arrays
-const drumstickNumber = [] ////<<<---- When plate gets dropped in TREX's mouth, push selection here
+
+
 
 const randomNumber = () => {
   return Math.floor(Math.random() * 10) + 1
 }
+
+
 
 const showRandomCard = () => {
   // something to clear element everytime called
@@ -78,7 +81,7 @@ const makePlates = () => {
 
 
 $('.plate').on('click', (e)=>{
-    const currentPlateStr = e.currentTarget.innerText // I think this is the problem here, only clickable on first plates call
+    const currentPlateStr = e.currentTarget.innerText 
 
     console.log('-----------------')
     console.log(`String is: ${currentPlateStr}`)
@@ -89,10 +92,26 @@ $('.plate').on('click', (e)=>{
     console.log(currentPlateNum)
 
     checkMatch(currentPlateNum)
+    if (testObject.score >= 20) {
+      alert ('YOU WIN')
+      resetGame()
+    }
+
     showRandomCard()
     makePlates()
   })
 }
+
+// function reset GAME
+
+const resetGame = () => {
+  $('.column-left').empty()
+  $('.column-right').empty()
+  testObject.score = 0
+  testObject.chances = 5
+  console.log(testObject)
+}
+
 
 // function to check match
 
@@ -101,8 +120,9 @@ const checkMatch = (num) => {//pass in value from .plate div
     if (num === cardNumber[0]) {
       alert(`it's a match!`)
       testObject.score = testObject.score + num
-      //makePlates()
-      //showRandomCard()
+
+
+
     }else{
       alert('nope')
       testObject.chances = testObject.chances - 1
@@ -116,38 +136,34 @@ const checkMatch = (num) => {//pass in value from .plate div
 // function => select plate
         // drag and drop
 
+// playGame function
+
+const playGame = () => {
+  //set up first round
+  makePlates()
+  showRandomCard()
+
+
+}
+
+
+
+
 // function next plates
         // resets plates, calls make plates function
-
+        // just call makePlates()
 
 // jquery listners and callbacks go here
 //--------------------------------------
 $(()=>{
 
+$('#playgame').on('click', ()=> playGame())
 
-makePlates()//only the first call of this is clickable
 
-showRandomCard()
+$('#reset').on('click', ()=> resetGame())
 
-//checkMatch(8)
 
-// $('.plate').on('click', (e)=>{
-//   const currentPlateStr = e.currentTarget.innerText // I think this is the problem here, only clickable on first plates call
-//
-//   console.log('-----------------')
-//   console.log(`String is: ${currentPlateStr}`)
-//
-//   const currentPlateNum = parseInt(currentPlateStr)
-//
-//   console.log('Number is:')
-//   console.log(currentPlateNum)
-//
-//   checkMatch(currentPlateNum)
-//
-//
-// })
-
-$('button').on('click', ()=> makePlates())//why can't I click on plates?
+$('#makeplates').on('click', ()=> makePlates())
 
 
 })

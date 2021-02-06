@@ -26,9 +26,12 @@ div {
 .plate {
   display:flex;
   justify-content: space-evenly;
-  height: 100px;
-  width: 100px;
-  background-color: green
+  align-items: center;
+  flex-wrap: wrap;
+  height: 150px;
+  width: 150px;
+  background-color: green;
+  color: green
 }
 
 .drumstick {
