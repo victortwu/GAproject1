@@ -42,6 +42,7 @@ const randomNumber = () => {
 const showRandomCard = () => {
   // something to clear element everytime called
   $('.column-left').empty()
+  cardNumber.pop()
   const $div = $('<div>').attr('class', 'card')
   $div.text(randomNumber())
   $('.column-left').append($div)
@@ -75,6 +76,22 @@ const makePlates = () => {
   console.log(numOfDrums)
   }
 
+
+$('.plate').on('click', (e)=>{
+    const currentPlateStr = e.currentTarget.innerText // I think this is the problem here, only clickable on first plates call
+
+    console.log('-----------------')
+    console.log(`String is: ${currentPlateStr}`)
+
+    const currentPlateNum = parseInt(currentPlateStr)
+
+    console.log('Number is:')
+    console.log(currentPlateNum)
+
+    checkMatch(currentPlateNum)
+    showRandomCard()
+    makePlates()
+  })
 }
 
 // function to check match
@@ -108,24 +125,29 @@ const checkMatch = (num) => {//pass in value from .plate div
 $(()=>{
 
 
-makePlates()
+makePlates()//only the first call of this is clickable
 
 showRandomCard()
 
 //checkMatch(8)
 
-$('.plate').on('click', (e)=>{
-  const currentPlateStr = e.target.innerText
-  console.log('-----------------')
-  console.log(`Srtring is: ${currentPlateStr}`)
-  const currentPlateNum = parseInt(currentPlateStr)
-  console.log('Number is:')
-  console.log(currentPlateNum)
-  checkMatch(currentPlateNum)
+// $('.plate').on('click', (e)=>{
+//   const currentPlateStr = e.currentTarget.innerText // I think this is the problem here, only clickable on first plates call
+//
+//   console.log('-----------------')
+//   console.log(`String is: ${currentPlateStr}`)
+//
+//   const currentPlateNum = parseInt(currentPlateStr)
+//
+//   console.log('Number is:')
+//   console.log(currentPlateNum)
+//
+//   checkMatch(currentPlateNum)
+//
+//
+// })
 
-})
-
-//$('button').on('click', makePlates())
+$('button').on('click', ()=> makePlates())//why can't I click on plates?
 
 
 })
