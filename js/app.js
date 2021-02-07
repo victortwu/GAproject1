@@ -27,6 +27,7 @@ const showRandomCard = () => {
 }
 
 
+
 // function make plates
 
 const makePlates = () => {
@@ -38,6 +39,7 @@ const makePlates = () => {
       const randomDrumsticks = randomNumber()
       $div.text(randomDrumsticks) /////////// <<<---- STORE THIS A DIFF WAY? OR get rid of it?
       $div.data('number', randomDrumsticks)///<-----so far...USELESS
+      $div.draggable()
           for (let i = 0; i < randomDrumsticks; i++){
             const $drumDiv = $('<div>').attr('class', 'drumstick')//<---make img from here?
             $div.append($drumDiv)    // $div.append('img id='image' src='theimage.png')
@@ -92,14 +94,15 @@ const checkMatch = (num) => {//pass in value from .plate div
 
       alert(`it's a match!`) //<---- perhaps a modal
       testObject.score = testObject.score + num
-      $('.scorebox').text(`Score: ${testObject.score}\n` + `Chances Left: ${testObject.chances}`)
-
+      $('.scorebox').text(`Score: ${testObject.score}`)
+      $('.chancebox').text(`Chances Left: ${testObject.chances}`)
     }else{
       alert('nope') // <---- modal
       testObject.chances = testObject.chances - 1
-      $('.scorebox').text(`Score: ${testObject.score}\n` + `Chances Left: ${testObject.chances}`)
+      $('.scorebox').text(`Score: ${testObject.score}`)
+      $('.chancebox').text(`Chances Left: ${testObject.chances}`)
     }
-    
+
 }
 
 
@@ -127,5 +130,10 @@ $('#reset').on('click', ()=> resetGame())
 
 $('#makeplates').on('click', ()=> makePlates())
 
+$('.trex').droppable( {
+    drop: function (e, ui) {
+      alert('DROPPED')
+    }
+})
 
 })
