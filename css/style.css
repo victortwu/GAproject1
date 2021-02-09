@@ -1,15 +1,32 @@
-h1 {
-  justify-content: center;
+body {
+  background-image: url('../images/Textured background .png');
 }
 
-div {
+h1 {
+  margin-bottom: 1px;
+}
 
-  border: solid black;
+h2 {
+  margin-top: 1px;
+}
+
+h1 > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 33%;
+}
+
+h2 > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 33%;
 }
 
 .container {
 
-  height: 700px;
+  height: 90%;
   width: 90%;
 
 
@@ -18,60 +35,71 @@ div {
 .column-left, .column-right {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   float:left;
   height: 90%;
   width: 45%;
 
 }
 
+
+
 .trex {
-  background-color: lightgreen;
-  height: 200px;
-  width: 200px;
+
+  height: 60%;
+
   position: absolute;
-  left: 30px;
-  top: 500px;
-  /* z-index: 1; */
+  left: 10px;
+  bottom: 50px;
+  z-index: -1;
 }
 
 .scorebox {
-  background-color: lavender;
+  background-color: #5ac93e;
   height: 62px;
   width: 125px;
   position: absolute;
-  right: 175px;
-  bottom: 162px
+  right: 100px;
+  bottom: 162px;
+
+  border-radius: 15px
 }
 
 .chancebox {
-  background-color: yellow;
+  background-color: #47a32f;
   height: 62px;
   width: 125px;
   position: absolute;
-  right: 175px;
-  bottom: 100px
+  right: 100px;
+  bottom: 90px;
+
+  border-radius: 15px
 }
 
 .plate {
+
   display:flex;
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
-  height: 150px;
-  width: 150px;
-  background-color: green;
-  color: green;
+  width: 190px;
+      height: 90px;
+      background-color: #cccac4;
+      border-radius: 95px / 45px;
 
+  color: #cccac4;
+  border: 1px solid #bab9b6
 }
 
 .drumstick {
-  height: 10px;
-  width: 10px;
-  background-color: blue
+  height: 30%;
+  /* width: 20px; */
+  /* background-color: blue */
 }
 
 .card {
   height: 200px;
   width: 200px;
   text-align: center;
+  border: solid black
 }

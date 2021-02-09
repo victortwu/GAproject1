@@ -39,9 +39,13 @@ const makePlates = () => {
       const randomDrumsticks = randomNumber()
       $div.text(randomDrumsticks) /////////// <<<---- STORE THIS A DIFF WAY? OR get rid of it?
       $div.data('number', randomDrumsticks)///<-----so far...USELESS
-      $div.draggable()
+      $div.draggable({
+        revert: 'invalid'
+      })
+      //console.log($div.draggable())
           for (let i = 0; i < randomDrumsticks; i++){
-            const $drumDiv = $('<div>').attr('class', 'drumstick')//<---make img from here?
+            const $drumDiv = $('<img>').attr('src', 'images/Drumstick.png')//<---make img from here?
+            $drumDiv.attr('class', 'drumstick')
             $div.append($drumDiv)    // $div.append('img id='image' src='theimage.png')
           }
 
@@ -50,28 +54,66 @@ const makePlates = () => {
     $('.column-right').append($div)
     const numOfDrums = $div.data().number
     console.log(numOfDrums)
+    console.log($div)
     }
 
-        $('.plate').on('click', (e)=>{
-            const currentPlateStr = e.currentTarget.innerText
 
-            const currentPlateNum = parseInt(currentPlateStr)
+    //console.log(currentPlateStr)
+    $('.trex').droppable( {
+        drop: function (e, ui) {
+          alert('DROPPED')
 
-            checkMatch(currentPlateNum)
-              if (testObject.score >= 20 && testObject.chances > 0) {
-                alert ('YOU WIN')
-                resetGame()
-                return
-              }
-              if (testObject.chances <= 0) {
-                alert ('BETTER LUCK NEXT TIME')
-                resetGame()
-                return
-              }
+          const currentPlateStr = $div.draggable()
 
-            showRandomCard()
-            makePlates()
-          })
+          const currentPlateNum = parseInt(currentPlateStr)
+          console.log(currentPlateNum)
+
+
+          checkMatch(currentPlateNum)
+            if (testObject.score >= 20 && testObject.chances > 0) {
+              alert ('YOU WIN')
+              resetGame()
+              return
+            }
+            if (testObject.chances <= 0) {
+              alert ('BETTER LUCK NEXT TIME')
+              resetGame()
+              return
+
+
+        }
+        showRandomCard()
+        makePlates()
+      }
+    })
+
+
+    //$('.trex').on('click', (e)=>{
+
+          //}
+
+
+      //})
+        // $('.plate').on('click', (e)=>{
+        //     const currentPlateStr = e.currentTarget.innerText
+        //
+        //     const currentPlateNum = parseInt(currentPlateStr)
+        //
+        //     checkMatch(currentPlateNum)
+        //       if (testObject.score >= 20 && testObject.chances > 0) {
+        //         alert ('YOU WIN')
+        //         resetGame()
+        //         return
+        //       }
+        //       if (testObject.chances <= 0) {
+        //         alert ('BETTER LUCK NEXT TIME')
+        //         resetGame()
+        //         return
+        //       }
+        //
+        //     showRandomCard()
+        //     makePlates()
+        //   })
 }
 
 // function reset GAME
@@ -80,6 +122,7 @@ const resetGame = () => {
   $('.column-left').empty()
   $('.column-right').empty()
   $('.scorebox').empty()
+  $('.chancebox').empty()
   testObject.score = 0
   testObject.chances = 5
   console.log(testObject)
