@@ -38,9 +38,14 @@ const makePlates = () => {
       const $div = $('<div>').attr('class', 'plate')
       const randomDrumsticks = randomNumber()
       $div.text(randomDrumsticks) /////////// <<<---- STORE THIS A DIFF WAY? OR get rid of it?
-      $div.data('number', randomDrumsticks)///<-----so far...USELESS
+      //$div.data('number', randomDrumsticks)///<-----so far...USELESS
       $div.draggable({
-        revert: 'invalid'
+        revert: 'invalid',
+        stop: function (e, ui) {
+          alert('stopped')
+
+
+        }
       })
       //console.log($div.draggable())
           for (let i = 0; i < randomDrumsticks; i++){
@@ -48,63 +53,77 @@ const makePlates = () => {
             $drumDiv.attr('class', 'drumstick')
             $div.append($drumDiv)
           }
+          // $div.draggable({
+          //   //revert: 'invalid',
+          //   stop: function (e, ui) {
+          //     alert('stopped')
+          //     const thisPlate = e.target
+          //     console.log(thisPlate)
+          //     //thisPlate.draggable('destroy')
+          //     thisPlate.css('background', 'yellow')
+          //   }
+          // })
+
 
     $('.column-right').append($div)
-    const numOfDrums = $div.data().number
-    console.log(numOfDrums)
+    //const numOfDrums = $div.data().number
+    //console.log(numOfDrums)
     console.log($div)
     }
 
 
 
-    $('.plate').on('click', (e)=>{
-            const currentPlateStr = e.currentTarget.innerText
+    // $('.plate').on('click', (e)=>{
+    //         const currentPlateStr = e.currentTarget.innerText
+    //
+    //         const currentPlateNum = parseInt(currentPlateStr)
+    //
+    //         checkMatch(currentPlateNum)
+    //           if (testObject.score >= 20 && testObject.chances > 0) {
+    //             alert ('YOU WIN')
+    //             resetGame()
+    //             return
+    //           }
+    //           if (testObject.chances <= 0) {
+    //             alert ('BETTER LUCK NEXT TIME')
+    //             resetGame()
+    //             return
+    //           }
+    //
+    //         showRandomCard()
+    //         makePlates()
+    //       })
 
-            const currentPlateNum = parseInt(currentPlateStr)
 
-            checkMatch(currentPlateNum)
-              if (testObject.score >= 20 && testObject.chances > 0) {
-                alert ('YOU WIN')
-                resetGame()
-                return
+          $('.trex').droppable( {
+              drop: function (e, ui) {
+                alert('DROPPED')
+                console.log(ui.draggable)
+                ui.draggable.remove()
+                const currentPlateStr = $div.draggable()
+
+                const currentPlateNum = parseInt(currentPlateStr)
+                console.log(currentPlateNum)
+
+
+                checkMatch(currentPlateNum)
+                  if (testObject.score >= 20 && testObject.chances > 0) {
+                    alert ('YOU WIN')
+                    resetGame()
+                    return
+                  }
+                  if (testObject.chances <= 0) {
+                    alert ('BETTER LUCK NEXT TIME')
+                    resetGame()
+                    return
+
+
+             }
+              showRandomCard()
+              makePlates()
               }
-              if (testObject.chances <= 0) {
-                alert ('BETTER LUCK NEXT TIME')
-                resetGame()
-                return
-              }
+            })
 
-            showRandomCard()
-            makePlates()
-          })
-
-          // $('.trex').droppable( {
-          //     drop: function (e, ui) {
-          //       alert('DROPPED')
-          //
-          //       const currentPlateStr = $div.draggable()
-          //
-          //       const currentPlateNum = parseInt(currentPlateStr)
-          //       console.log(currentPlateNum)
-          //
-          //
-          //       checkMatch(currentPlateNum)
-          //         if (testObject.score >= 20 && testObject.chances > 0) {
-          //           alert ('YOU WIN')
-          //           resetGame()
-          //           return
-          //         }
-          //         if (testObject.chances <= 0) {
-          //           alert ('BETTER LUCK NEXT TIME')
-          //           resetGame()
-          //           return
-          //
-          //
-          //     }
-          //     showRandomCard()
-          //     makePlates()
-          //   }
-          // })
 
 
 
