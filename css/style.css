@@ -26,13 +26,13 @@ h2 > img {
 
 .container {
 
-  height: 90%;
+  height: 100%;
   width: 90%;
 
 
 }
 
-.column-left, .column-right {
+.column-left {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -42,6 +42,15 @@ h2 > img {
 
 }
 
+.column-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-content: flex-start;
+  height: 90%;
+  width: 45%;
+
+}
 
 
 .trex {
@@ -49,8 +58,8 @@ h2 > img {
   height: 60%;
 
   position: absolute;
-  left: 10px;
-  bottom: 50px;
+  left: 5%;
+  bottom: 5%;
   z-index: -1;
 }
 
@@ -59,7 +68,7 @@ h2 > img {
   height: 62px;
   width: 125px;
   position: absolute;
-  right: 100px;
+  right: 10%;
   bottom: 162px;
 
   border-radius: 15px
@@ -70,7 +79,7 @@ h2 > img {
   height: 62px;
   width: 125px;
   position: absolute;
-  right: 100px;
+  right: 10%;
   bottom: 90px;
 
   border-radius: 15px
@@ -83,23 +92,28 @@ h2 > img {
   align-items: center;
   flex-wrap: wrap;
   width: 190px;
-      height: 90px;
-      background-color: #cccac4;
-      border-radius: 95px / 45px;
-
+  height: 90px;
+  background-color: #cccac4;
+  border-radius: 95px / 45px;
+  font-size: 1px;
   color: #cccac4;
-  border: 1px solid #bab9b6
+  border: solid #2a3757
+  position: absolute;
+  left: 50%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .drumstick {
-  height: 30%;
+  height: 40%;
   /* width: 20px; */
   /* background-color: blue */
 }
 
 .card {
-  height: 200px;
-  width: 200px;
-  text-align: center;
-  border: solid black
+  height: 50px;
+  width: 100px;
+  border: solid black;
+
+
 }

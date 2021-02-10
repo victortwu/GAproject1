@@ -46,10 +46,8 @@ const makePlates = () => {
           for (let i = 0; i < randomDrumsticks; i++){
             const $drumDiv = $('<img>').attr('src', 'images/Drumstick.png')//<---make img from here?
             $drumDiv.attr('class', 'drumstick')
-            $div.append($drumDiv)    // $div.append('img id='image' src='theimage.png')
+            $div.append($drumDiv)
           }
-
-
 
     $('.column-right').append($div)
     const numOfDrums = $div.data().number
@@ -58,62 +56,62 @@ const makePlates = () => {
     }
 
 
-    //console.log(currentPlateStr)
-    $('.trex').droppable( {
-        drop: function (e, ui) {
-          alert('DROPPED')
 
-          const currentPlateStr = $div.draggable()
+    $('.plate').on('click', (e)=>{
+            const currentPlateStr = e.currentTarget.innerText
 
-          const currentPlateNum = parseInt(currentPlateStr)
-          console.log(currentPlateNum)
+            const currentPlateNum = parseInt(currentPlateStr)
+
+            checkMatch(currentPlateNum)
+              if (testObject.score >= 20 && testObject.chances > 0) {
+                alert ('YOU WIN')
+                resetGame()
+                return
+              }
+              if (testObject.chances <= 0) {
+                alert ('BETTER LUCK NEXT TIME')
+                resetGame()
+                return
+              }
+
+            showRandomCard()
+            makePlates()
+          })
+
+          // $('.trex').droppable( {
+          //     drop: function (e, ui) {
+          //       alert('DROPPED')
+          //
+          //       const currentPlateStr = $div.draggable()
+          //
+          //       const currentPlateNum = parseInt(currentPlateStr)
+          //       console.log(currentPlateNum)
+          //
+          //
+          //       checkMatch(currentPlateNum)
+          //         if (testObject.score >= 20 && testObject.chances > 0) {
+          //           alert ('YOU WIN')
+          //           resetGame()
+          //           return
+          //         }
+          //         if (testObject.chances <= 0) {
+          //           alert ('BETTER LUCK NEXT TIME')
+          //           resetGame()
+          //           return
+          //
+          //
+          //     }
+          //     showRandomCard()
+          //     makePlates()
+          //   }
+          // })
 
 
-          checkMatch(currentPlateNum)
-            if (testObject.score >= 20 && testObject.chances > 0) {
-              alert ('YOU WIN')
-              resetGame()
-              return
-            }
-            if (testObject.chances <= 0) {
-              alert ('BETTER LUCK NEXT TIME')
-              resetGame()
-              return
 
 
-        }
-        showRandomCard()
-        makePlates()
-      }
-    })
 
 
-    //$('.trex').on('click', (e)=>{
 
-          //}
-
-
-      //})
-        // $('.plate').on('click', (e)=>{
-        //     const currentPlateStr = e.currentTarget.innerText
-        //
-        //     const currentPlateNum = parseInt(currentPlateStr)
-        //
-        //     checkMatch(currentPlateNum)
-        //       if (testObject.score >= 20 && testObject.chances > 0) {
-        //         alert ('YOU WIN')
-        //         resetGame()
-        //         return
-        //       }
-        //       if (testObject.chances <= 0) {
-        //         alert ('BETTER LUCK NEXT TIME')
-        //         resetGame()
-        //         return
-        //       }
-        //
-        //     showRandomCard()
-        //     makePlates()
-        //   })
 }
 
 // function reset GAME
@@ -173,10 +171,10 @@ $('#reset').on('click', ()=> resetGame())
 
 $('#makeplates').on('click', ()=> makePlates())
 
-$('.trex').droppable( {
-    drop: function (e, ui) {
-      alert('DROPPED')
-    }
-})
+    // $('.trex').droppable( {
+    //     drop: function (e, ui) {
+    //       alert('DROPPED')
+    //     }
+    //   })
 
 })
