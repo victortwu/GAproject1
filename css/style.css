@@ -71,7 +71,10 @@ h2 > img {
   right: 10%;
   bottom: 162px;
 
-  border-radius: 15px
+  border-radius: 15px;
+  opacity: 75%;
+  text-align: center;
+  color: white;
 }
 
 .chancebox {
@@ -82,7 +85,10 @@ h2 > img {
   right: 10%;
   bottom: 90px;
 
-  border-radius: 15px
+  border-radius: 15px;
+  opacity: 75%;
+  text-align: center;
+  color: white;
 }
 
 .plate {
@@ -116,4 +122,20 @@ h2 > img {
   border: solid black;
 
 
+}
+
+footer {
+
+  position: absolute;
+  bottom: 1%;
+  right: 10%
+
+}
+
+button {
+  width: 90px;
+  height: 30px;
+  background: #fc6b03;
+  border-radius: 15%;
+  color: white
 }

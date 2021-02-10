@@ -41,11 +41,11 @@ const makePlates = () => {
       //$div.data('number', randomDrumsticks)///<-----so far...USELESS
       $div.draggable({
         revert: 'invalid',
-        stop: function (e, ui) {
-          alert('stopped')
+        // stop: function (e, ui) {
+        //   alert('stopped')
 
 
-        }
+        //}
       })
       //console.log($div.draggable())
           for (let i = 0; i < randomDrumsticks; i++){
@@ -97,10 +97,13 @@ const makePlates = () => {
 
           $('.trex').droppable( {
               drop: function (e, ui) {
-                alert('DROPPED')
+                //alert('DROPPED')
                 console.log(ui.draggable)
-                ui.draggable.remove()
-                const currentPlateStr = $div.draggable()
+                //ui.draggable.remove()
+                console.log(ui.draggable)
+                const currentPlate = ui.draggable
+                console.log(currentPlate.text())
+                const currentPlateStr = currentPlate.text()
 
                 const currentPlateNum = parseInt(currentPlateStr)
                 console.log(currentPlateNum)
