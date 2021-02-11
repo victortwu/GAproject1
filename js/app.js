@@ -24,7 +24,10 @@ const showRandomCard = () => {
   const $div = $('<div>').attr('class', 'card')
   $div.text(randomNumber())
 
+  const $littleDiv = $('<div>').attr('class', 'triangle')
+
   $('.column-left').append($div)
+  $('.column-left').append($littleDiv)
 
   const str = $div.text()
   const number = parseInt(str)
@@ -182,13 +185,16 @@ const checkMatch = (num) => {//pass in value from .plate div
 
     if (num === cardNumber[0]) {
       chompingTrex()
-      alert(`it's a match!`) //<---- perhaps a modal
+
+       //<---- perhaps a modal
       testObject.score = testObject.score + num
-      $('.scorebox').text(`Score: ${testObject.score}`)
+      alert(`It's a match! You have ${testObject.score} bones!`)
+      $('.scorebox').text(`Bones: ${testObject.score}`)
       $('.chancebox').text(`Chances Left: ${testObject.chances}`)
     }else{
-      alert('nope') // <---- modal
+       // <---- modal
       testObject.chances = testObject.chances - 1
+      alert(`Sorry! You have ${testObject.chances} chances left`)
       $('.scorebox').text(`Score: ${testObject.score}`)
       $('.chancebox').text(`Chances Left: ${testObject.chances}`)
     }
