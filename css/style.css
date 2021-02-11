@@ -63,6 +63,16 @@ h2 > img {
   z-index: -1;
 }
 
+.trex2 {
+
+  height: 60%;
+
+  position: absolute;
+  left: 5%;
+  bottom: 5%;
+  z-index: -1;
+}
+
 .scorebox {
   background-color: #5ac93e;
   height: 62px;

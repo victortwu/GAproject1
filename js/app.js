@@ -4,6 +4,12 @@ const testObject = {
   chances: 5
 }
 
+const $imgClosed = $('<img>').attr('src', 'images/Dino 1.png')
+$imgClosed.attr('class', 'trex')
+
+const $imgOpen = $('<img>').attr('src', 'images/Dino 2.png')
+$imgOpen.attr('class', 'trex2')
+
 const cardNumber = []
 
 const randomNumber = () => {
@@ -26,8 +32,27 @@ const showRandomCard = () => {
   cardNumber.push(number)
 }
 
+// function chompingTrex
 
+const chompingTrex = () => {
 
+    $('.trex').hide()
+    $('.container').append($imgOpen)
+    setTimeout(()=> {$($imgOpen).hide()}, 500)
+    setTimeout(()=> {$('.trex').show()}, 500)
+    setTimeout(()=> {$($imgOpen).show()}, 1000)
+    setTimeout(()=> {$('.trex').hide()}, 1000)
+    setTimeout(()=> {$($imgOpen).hide()}, 1500)
+    setTimeout(()=> {$('.trex').show()}, 1500)
+    setTimeout(()=> {$($imgOpen).show()}, 2000)
+    setTimeout(()=> {$('.trex').hide()}, 2000)
+    setTimeout(()=> {$($imgOpen).hide()}, 2500)
+    setTimeout(()=> {$('.trex').show()}, 2500)
+    setTimeout(()=> {$($imgOpen).show()}, 3000)
+    setTimeout(()=> {$('.trex').hide()}, 3000)
+    setTimeout(()=> {$($imgOpen).hide()}, 3500)
+    setTimeout(()=> {$('.trex').show()}, 3500)
+}
 // function make plates
 
 const makePlates = () => {
@@ -97,9 +122,11 @@ const makePlates = () => {
 
           $('.trex').droppable( {
               drop: function (e, ui) {
-                //alert('DROPPED')
-                console.log(ui.draggable)
-                //ui.draggable.remove()
+
+
+
+
+                ui.draggable.remove()
                 console.log(ui.draggable)
                 const currentPlate = ui.draggable
                 console.log(currentPlate.text())
@@ -154,7 +181,7 @@ const resetGame = () => {
 const checkMatch = (num) => {//pass in value from .plate div
 
     if (num === cardNumber[0]) {
-
+      chompingTrex()
       alert(`it's a match!`) //<---- perhaps a modal
       testObject.score = testObject.score + num
       $('.scorebox').text(`Score: ${testObject.score}`)
@@ -176,6 +203,7 @@ const checkMatch = (num) => {//pass in value from .plate div
 // playGame function
 
 const playGame = () => {
+  $('.container').append($imgClosed)
   showRandomCard()
   makePlates()
 }
@@ -189,7 +217,7 @@ $('#playgame').on('click', ()=> playGame())
 
 
 $('#reset').on('click', ()=> resetGame())
-
+//$('#reset').on('click', ()=> chompingTrex())
 
 $('#makeplates').on('click', ()=> makePlates())
 
