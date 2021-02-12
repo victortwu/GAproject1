@@ -13,7 +13,29 @@ const $imgOpen = $('<img>').attr('src', 'images/Dino 2.png')
 $imgOpen.attr('class', 'trex2')
 
 
+// holds single number to match to generated from showRandomCard()
 const cardNumber = []
+
+//temporarily stores random plates of drumsticks including correct plate
+let plates = []
+
+
+
+// shuffle plates function
+const shuffle = (arr) => {
+    let currentIndex = arr.length, temporaryValue, randomIndex;
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+          // And swap it with the current element.
+          temporaryValue = arr[currentIndex];
+          arr[currentIndex] = arr[randomIndex];
+          arr[randomIndex] = temporaryValue;
+        }
+        return arr;
+}
 
 
 const randomNumber = () => {
@@ -23,7 +45,7 @@ const randomNumber = () => {
 
 // number in talk bubble to match to function
 const showRandomCard = () => {
-
+  plates = []
   $('.column-left').empty()
   cardNumber.pop()
 
@@ -39,8 +61,23 @@ const showRandomCard = () => {
   const number = parseInt(str)
 
   cardNumber.push(number)
-}
 
+// must make one plate here with same value and push to plates[]
+  const $divAnswer = $('<div>').attr('class', 'plate')
+  $divAnswer.text($div.text())
+
+  $divAnswer.draggable({
+    revert: 'invalid'
+  })
+  for (let i = 0; i < number; i++){
+    const $drumDiv = $('<img>').attr('src', 'images/Drumstick.png')//<---make img from here?
+    $drumDiv.attr('class', 'drumstick')
+    $divAnswer.append($drumDiv)
+  }
+  plates.push($divAnswer)
+  //$('.column-right').append($divAnswer)
+}
+console.log(plates)
 
 
 
@@ -75,64 +112,53 @@ const chompingTrex = () => {
 const makePlates = () => {
 
   $('.column-right').empty()
+  showRandomCard()
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
       const $div = $('<div>').attr('class', 'plate')
       const randomDrumsticks = randomNumber()
       $div.text(randomDrumsticks)
-
       $div.draggable({
         revert: 'invalid'
       })
-
           for (let i = 0; i < randomDrumsticks; i++){
             const $drumDiv = $('<img>').attr('src', 'images/Drumstick.png')//<---make img from here?
             $drumDiv.attr('class', 'drumstick')
             $div.append($drumDiv)
           }
+          plates.push($div)
+        }
 
 
+  let shuffledPlates = shuffle(plates)
+  for (let i = 0; i < shuffledPlates.length; i++) {
+      $('.column-right').append(shuffledPlates[i])
+  }
 
-    $('.column-right').append($div)
+  // drop to eventlistener
+  $('.trex').droppable( {
+        drop: function (e, ui) {
+        ui.draggable.remove()
+        const currentPlate = ui.draggable
+        const currentPlateStr = currentPlate.text()
+        const currentPlateNum = parseInt(currentPlateStr)
 
+        checkMatch(currentPlateNum)
 
-    }
-
-
-// drop to eventlistener
-          $('.trex').droppable( {
-              drop: function (e, ui) {
-
-                ui.draggable.remove()
-                console.log(ui.draggable)
-                const currentPlate = ui.draggable
-                console.log(currentPlate.text())
-                const currentPlateStr = currentPlate.text()
-
-                const currentPlateNum = parseInt(currentPlateStr)
-                console.log(currentPlateNum)
-
-
-                checkMatch(currentPlateNum)
-
-                  if (testObject.score >= 20 && testObject.chances > 0) {
-                    alert ('YOU WIN')
-                    resetGame()
-                    return
-                  }
-                  if (testObject.chances <= 0) {
-                    alert ('BETTER LUCK NEXT TIME')
-                    resetGame()
-                    return
-                  }
-                  showRandomCard()
-                  makePlates()
-              }
-            })
+            if (testObject.score >= 20 && testObject.chances > 0) {
+                alert ('YOU WIN')
+                resetGame()
+                return
+                }
+            if (testObject.chances <= 0) {
+                alert ('BETTER LUCK NEXT TIME')
+                resetGame()
+                return
+                }
+                makePlates()
+            }
+    })
 }
-
-
-
 
 
 // function reset GAME
@@ -154,7 +180,7 @@ const checkMatch = (num) => {//pass in value from .plate div
     if (num === cardNumber[0]) {
       chompingTrex()
       testObject.score = testObject.score + num
-      alert(`It's a match! You have ${testObject.score} bones!`)
+      alert(`It's a match! You've earned ${cardNumber[0]} bones!`)
       $('.scorebox').text(`Bones: ${testObject.score}`)
       $('.chancebox').text(`Chances Left: ${testObject.chances}`)
     }else{
@@ -171,7 +197,6 @@ const checkMatch = (num) => {//pass in value from .plate div
 
 const playGame = () => {
   $('.container').append($imgClosed)
-  showRandomCard()
   makePlates()
 }
 
@@ -184,9 +209,6 @@ $('#playgame').on('click', ()=> playGame())
 
 
 $('#reset').on('click', ()=> resetGame())
-
-
-$('#makeplates').on('click', ()=> makePlates())
 
 
 })
