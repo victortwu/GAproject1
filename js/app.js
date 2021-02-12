@@ -154,13 +154,13 @@ const makePlates = () => {
             checkMatch(currentPlateNum)
 
                 if (testObject.score >= 25 && testObject.chances > 0) {
-                    alert ('YOU WIN')
-                    resetGame()
+                    $('.card').text('YOU WIN!')
+                    setTimeout(()=> {resetGame()}, 3000)
                     return
                     }
                 if (testObject.chances <= 0) {
-                    alert ('BETTER LUCK NEXT TIME')
-                    resetGame()
+                  $('.card').text('sorry GAME OVER')
+                  setTimeout(()=> {resetGame()}, 3000)
                     return
                     }
                     makePlates()
@@ -204,6 +204,7 @@ const checkMatch = (num) => {//pass in value from .plate div
 // playGame function
 
 const playGame = () => {
+
   $('.container').append($imgClosed)
   makePlates()
 }

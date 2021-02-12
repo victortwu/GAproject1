@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
 body {
-  
+
   background-image: url('../images/Textured background .png');
 }
 
@@ -11,19 +13,21 @@ h2 {
   margin-top: 1px;
 }
 
-h1 > img {
+.title {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 33%;
 }
 
-h2 > img {
+.title2 {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 33%;
 }
+
+
 
 .container {
   display: flex;
@@ -38,7 +42,7 @@ h2 > img {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  /* float:left; */
+
   height: 90%;
   width: 45%;
 
@@ -130,8 +134,7 @@ h2 > img {
 
 .drumstick {
   height: 40%;
-  /* width: 20px; */
-  /* background-color: blue */
+
 }
 
 .card {
@@ -144,7 +147,7 @@ h2 > img {
   border-radius: 40%;
   padding-top: 15px;
   text-align: center;
-  font-family: sans-serif;
+  font-family: Fredoka One, sans-serif;
   font-size: 65px;
   color: #fc6b03;
 }
@@ -157,10 +160,11 @@ h2 > img {
   border-left: 15px solid transparent;
   border-right: 1px solid transparent;
   border-top: 50px solid white;
+  z-index: -1;
 }
 
 footer {
-  /* margin-left: auto; */
+  margin-left: auto;
   margin-right: auto;
   position: absolute;
   bottom: 1%;
@@ -168,7 +172,10 @@ footer {
 
 }
 
-button {
+footer > button {
+
+  margin-left: auto;
+  margin-right: auto;
   width: 90px;
   height: 30px;
 
