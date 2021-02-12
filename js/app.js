@@ -23,18 +23,18 @@ let plates = []
 
 // shuffle plates function
 const shuffle = (arr) => {
-    let currentIndex = arr.length, temporaryValue, randomIndex;
+    let currentIndex = arr.length, temporaryValue, randomIndex
         // While there remain elements to shuffle...
         while (0 !== currentIndex) {
           // Pick a remaining element...
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex -= 1;
+          randomIndex = Math.floor(Math.random() * currentIndex)
+          currentIndex -= 1
           // And swap it with the current element.
-          temporaryValue = arr[currentIndex];
-          arr[currentIndex] = arr[randomIndex];
-          arr[randomIndex] = temporaryValue;
+          temporaryValue = arr[currentIndex]
+          arr[currentIndex] = arr[randomIndex]
+          arr[randomIndex] = temporaryValue
         }
-        return arr;
+        return arr
 }
 
 
@@ -75,7 +75,7 @@ const showRandomCard = () => {
     $divAnswer.append($drumDiv)
   }
   plates.push($divAnswer)
-  //$('.column-right').append($divAnswer)
+
 }
 console.log(plates)
 
@@ -126,6 +126,7 @@ const makePlates = () => {
             $drumDiv.attr('class', 'drumstick')
             $div.append($drumDiv)
           }
+          //$div.effect('bounce', {times: 10}, 'slow')
           plates.push($div)
         }
 
@@ -133,30 +134,37 @@ const makePlates = () => {
   let shuffledPlates = shuffle(plates)
   for (let i = 0; i < shuffledPlates.length; i++) {
       $('.column-right').append(shuffledPlates[i])
+      shuffledPlates[i].effect('bounce', {distance: 30, times: 30}, 2000)
   }
 
   // drop to eventlistener
   $('.trex').droppable( {
         drop: function (e, ui) {
-        ui.draggable.remove()
-        const currentPlate = ui.draggable
-        const currentPlateStr = currentPlate.text()
-        const currentPlateNum = parseInt(currentPlateStr)
 
-        checkMatch(currentPlateNum)
+            const currentPlate = ui.draggable
+            const currentPlateStr = currentPlate.text()
+            const currentPlateNum = parseInt(currentPlateStr)
 
-            if (testObject.score >= 20 && testObject.chances > 0) {
-                alert ('YOU WIN')
-                resetGame()
-                return
-                }
-            if (testObject.chances <= 0) {
-                alert ('BETTER LUCK NEXT TIME')
-                resetGame()
-                return
-                }
-                makePlates()
+            if (currentPlateNum === cardNumber[0]) {
+              currentPlate.hide('explode', {pieces: 20}, 3000)
+            }else{
+              currentPlate.remove()
             }
+
+            checkMatch(currentPlateNum)
+
+                if (testObject.score >= 25 && testObject.chances > 0) {
+                    alert ('YOU WIN')
+                    resetGame()
+                    return
+                    }
+                if (testObject.chances <= 0) {
+                    alert ('BETTER LUCK NEXT TIME')
+                    resetGame()
+                    return
+                    }
+                    makePlates()
+        }
     })
 }
 
