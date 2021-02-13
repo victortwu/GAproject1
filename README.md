@@ -33,4 +33,4 @@ STRETCH
 
 WIREFRAME
 
-<img src='images/trex wireframe.jpg'>
+<img src='trex wireframe.jpg'>
