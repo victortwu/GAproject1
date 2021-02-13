@@ -134,7 +134,7 @@ const makePlates = () => {
   let shuffledPlates = shuffle(plates)
   for (let i = 0; i < shuffledPlates.length; i++) {
       $('.column-right').append(shuffledPlates[i])
-      shuffledPlates[i].effect('bounce', {distance: 30, times: 30}, 2000)
+      shuffledPlates[i]//.effect('bounce', {times: 20}, 500)
   }
 
   // drop to eventlistener
