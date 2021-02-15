@@ -21,7 +21,7 @@ let plates = []
 
 
 
-// shuffle plates function
+// shuffle plates function -- got this from stack overflow, was trying to randomly append on makePlates function before
 const shuffle = (arr) => {
     let currentIndex = arr.length, temporaryValue, randomIndex
         // While there remain elements to shuffle...
