@@ -21,7 +21,7 @@ let plates = []
 
 
 
-// shuffle plates function
+// shuffle plates function -- credit : stackoverflow
 const shuffle = (arr) => {
     let currentIndex = arr.length, temporaryValue, randomIndex
         // While there remain elements to shuffle...
@@ -130,11 +130,11 @@ const makePlates = () => {
           plates.push($div)
         }
 
-
-  let shuffledPlates = shuffle(plates)
-  for (let i = 0; i < shuffledPlates.length; i++) {
+// randomly append ALL plates including the answer
+  let shuffledPlates = shuffle(plates) // <---had to use this from stackoverflow
+  for (let i = 0; i < shuffledPlates.length; i++) { //<--WANTED to acheive this w/o shuffling array elements first
       $('.column-right').append(shuffledPlates[i])
-      shuffledPlates[i]//.effect('bounce', {times: 20}, 500)
+      shuffledPlates[i]//.effect('bounce', {times: 20}, 500) <-- this made click and drag buggy
   }
 
   // drop to eventlistener
