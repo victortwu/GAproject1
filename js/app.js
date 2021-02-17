@@ -84,7 +84,7 @@ console.log(plates)
 // function chompingTrex
 const chompingTrex = () => {
 
-    $('.trex').hide()
+    //$('.trex').hide()
     $('.container').append($imgOpen)
     setTimeout(()=> {$($imgOpen).hide()}, 500)
     setTimeout(()=> {$('.trex').show()}, 500)
@@ -194,12 +194,16 @@ const checkMatch = (num) => {//pass in value from .plate div
     if (num === cardNumber[0]) {
       chompingTrex()
       testObject.score = testObject.score + num
-      alert(`It's a match! You've earned ${cardNumber[0]} bones!`)
+      $('p').text(`It's a MATCH! You've earned ${cardNumber[0]} bones!`)
+      setTimeout(()=> {$('p').empty()}, 3000)
+      //alert(`It's a match! You've earned ${cardNumber[0]} bones!`)
       $('.scorebox').text(`Bones: ${testObject.score}`)
       $('.chancebox').text(`Chances Left: ${testObject.chances}`)
     }else{
       testObject.chances = testObject.chances - 1
-      alert(`Sorry! You have ${testObject.chances} chances left`)
+      $('p').text(`Sorry! You have ${testObject.chances} chances left`)
+      setTimeout(()=> {$('p').empty()}, 3000)
+      //alert(`Sorry! You have ${testObject.chances} chances left`)
       $('.scorebox').text(`Score: ${testObject.score}`)
       $('.chancebox').text(`Chances Left: ${testObject.chances}`)
     }
