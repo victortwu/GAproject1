@@ -20,23 +20,23 @@ const cardNumber = []
 let plates = []
 
 
+// shuffle plates function <-- credit: stackoverflow
+// const shuffle = (arr) => {
+//     let currentIndex = arr.length, temporaryValue, randomIndex
+//         // While there remain elements to shuffle...
+//         while (0 !== currentIndex) {
+//           // Pick a remaining element...
+//           randomIndex = Math.floor(Math.random() * currentIndex)
+//           currentIndex -= 1
+//           // And swap it with the current element.
+//           temporaryValue = arr[currentIndex]
+//           arr[currentIndex] = arr[randomIndex]
+//           arr[randomIndex] = temporaryValue
+//         }
+//         return arr
+// }
 
-// shuffle plates function -- credit : stackoverflow
-const shuffle = (arr) => {
-    let currentIndex = arr.length, temporaryValue, randomIndex
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-          // Pick a remaining element...
-          randomIndex = Math.floor(Math.random() * currentIndex)
-          currentIndex -= 1
-          // And swap it with the current element.
-          temporaryValue = arr[currentIndex]
-          arr[currentIndex] = arr[randomIndex]
-          arr[randomIndex] = temporaryValue
-        }
-        return arr
-}
-
+// a different way to shuffle plates using .sort()
 
 const randomNumber = () => {
   return Math.floor(Math.random() * 10) + 1
@@ -84,7 +84,7 @@ console.log(plates)
 // function chompingTrex
 const chompingTrex = () => {
 
-    $('.trex').hide()
+    //$('.trex').hide()
     $('.container').append($imgOpen)
     setTimeout(()=> {$($imgOpen).hide()}, 500)
     setTimeout(()=> {$('.trex').show()}, 500)
@@ -130,11 +130,17 @@ const makePlates = () => {
           plates.push($div)
         }
 
-// randomly append ALL plates including the answer
-  let shuffledPlates = shuffle(plates) // <---had to use this from stackoverflow
-  for (let i = 0; i < shuffledPlates.length; i++) { //<--WANTED to acheive this w/o shuffling array elements first
+  //randomly append ALL plates including the answer
+  //let shuffledPlates = shuffle(plates) //<--had to use this from stackoverflow
+
+  // a different way to shuffle plates using .sort()
+  let shuffledPlates = plates.sort( (a, b) => {
+    return .5 - Math.random()
+  })
+
+  for (let i = 0; i < shuffledPlates.length; i++) {// tried and WANTED to achieve same result with just the for loop, I will revisit
       $('.column-right').append(shuffledPlates[i])
-      shuffledPlates[i]//.effect('bounce', {times: 20}, 500) <-- this made click and drag buggy
+      shuffledPlates[i]//.effect('bounce', {distance: 30, times: 30}, 2000) <--this made draggable buggy
   }
 
   // drop to eventlistener
@@ -188,12 +194,16 @@ const checkMatch = (num) => {//pass in value from .plate div
     if (num === cardNumber[0]) {
       chompingTrex()
       testObject.score = testObject.score + num
-      alert(`It's a match! You've earned ${cardNumber[0]} bones!`)
+      $('p').text(`It's a MATCH! You've earned ${cardNumber[0]} bones!`)
+      setTimeout(()=> {$('p').empty()}, 3000)
+      //alert(`It's a match! You've earned ${cardNumber[0]} bones!`)
       $('.scorebox').text(`Bones: ${testObject.score}`)
       $('.chancebox').text(`Chances Left: ${testObject.chances}`)
     }else{
       testObject.chances = testObject.chances - 1
-      alert(`Sorry! You have ${testObject.chances} chances left`)
+      $('p').text(`Sorry! You have ${testObject.chances} chances left`)
+      setTimeout(()=> {$('p').empty()}, 3000)
+      //alert(`Sorry! You have ${testObject.chances} chances left`)
       $('.scorebox').text(`Score: ${testObject.score}`)
       $('.chancebox').text(`Chances Left: ${testObject.chances}`)
     }
