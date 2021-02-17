@@ -20,23 +20,23 @@ const cardNumber = []
 let plates = []
 
 
-
 // shuffle plates function <-- credit: stackoverflow
-const shuffle = (arr) => {
-    let currentIndex = arr.length, temporaryValue, randomIndex
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-          // Pick a remaining element...
-          randomIndex = Math.floor(Math.random() * currentIndex)
-          currentIndex -= 1
-          // And swap it with the current element.
-          temporaryValue = arr[currentIndex]
-          arr[currentIndex] = arr[randomIndex]
-          arr[randomIndex] = temporaryValue
-        }
-        return arr
-}
+// const shuffle = (arr) => {
+//     let currentIndex = arr.length, temporaryValue, randomIndex
+//         // While there remain elements to shuffle...
+//         while (0 !== currentIndex) {
+//           // Pick a remaining element...
+//           randomIndex = Math.floor(Math.random() * currentIndex)
+//           currentIndex -= 1
+//           // And swap it with the current element.
+//           temporaryValue = arr[currentIndex]
+//           arr[currentIndex] = arr[randomIndex]
+//           arr[randomIndex] = temporaryValue
+//         }
+//         return arr
+// }
 
+// a different way to shuffle plates using .sort()
 
 const randomNumber = () => {
   return Math.floor(Math.random() * 10) + 1
@@ -131,7 +131,13 @@ const makePlates = () => {
         }
 
   //randomly append ALL plates including the answer
-  let shuffledPlates = shuffle(plates) //<--had to use this from stackoverflow
+  //let shuffledPlates = shuffle(plates) //<--had to use this from stackoverflow
+
+  // a different way to shuffle plates using .sort()
+  let shuffledPlates = plates.sort( (a, b) => {
+    return .5 - Math.random()
+  })
+
   for (let i = 0; i < shuffledPlates.length; i++) {// tried and WANTED to achieve same result with just the for loop, I will revisit
       $('.column-right').append(shuffledPlates[i])
       shuffledPlates[i]//.effect('bounce', {distance: 30, times: 30}, 2000) <--this made draggable buggy
