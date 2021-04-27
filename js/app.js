@@ -231,3 +231,5 @@ $('#reset').on('click', ()=> resetGame())
 
 
 })
+
+// Just making a comment to merge it to main
